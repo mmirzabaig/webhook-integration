@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discuss-socket
+  labels:
+    app: discuss-socket
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discuss-socket
+  template:
+    metadata:
+      labels:
+        app: discuss-socket
+    spec:
+      containers:
+      - name: discuss-socket
+        image: mmirzabaig/discuss-socket:v3
+        env:
+        - name: MONGO_URL
+          value: "mongodb+srv://mmirzabaig:Drink water65@cluster0.u6llroj.mongodb.net/?retryWrites=true&w=majority"
+        ports:
+        - containerPort: 8080
